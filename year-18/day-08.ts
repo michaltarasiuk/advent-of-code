@@ -4,24 +4,31 @@ import {fetchInput} from "../lib.js"
 
 const input = await fetchInput({year: 2018, day: 8})
 
-function sumMetadataEntries(nodes: number[]) {
-  let sum = 0
-  let cursor = 0
-  function walk() {
-    const childCount = nodes[cursor++]
-    const metadataCount = nodes[cursor++]
-    for (let i = 0; i < childCount; i++) {
-      walk()
-    }
-    for (let i = 0; i < metadataCount; i++) {
-      sum += nodes[cursor++]
-    }
-  }
-  walk()
-  return sum
+const nodes = input.split(" ").map(Number)
+
+function add(a: number, b: number) {
+  return a + b
 }
 
-const nodes = input.split(" ").map(Number)
-const sum = sumMetadataEntries(nodes)
+let metadataEntriesSum = 0
+let cursor = 0
+function walk() {
+  const childCount = nodes[cursor++]
+  const metadataCount = nodes[cursor++]
+  const children: number[] = []
+  for (let i = 0; i < childCount; i++) {
+    children.push(walk())
+  }
+  const metadataEntries = nodes.slice(cursor, cursor + metadataCount)
+  metadataEntriesSum += metadataEntries.reduce(add, 0)
+  cursor += metadataEntries.length
 
-assert.strictEqual(sum, 41028, "Part 1 failed")
+  return childCount === 0
+    ? metadataEntries.reduce(add, 0)
+    : metadataEntries.map(index => children[index - 1] ?? 0).reduce(add, 0)
+}
+
+const rootValue = walk()
+
+assert.strictEqual(metadataEntriesSum, 41028, "Part 1 failed")
+assert.strictEqual(rootValue, 20849, "Part 2 failed")

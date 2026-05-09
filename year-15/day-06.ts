@@ -21,8 +21,8 @@ function setLights(
   actions: Record<string, (v: number) => number>,
   ...instructions: ReturnType<typeof parseInstruction>[]
 ) {
-  const Size = 1_000
-  const lights = [...Array(Size)].map(() => Array(Size).fill(0))
+  const SIZE = 1_000
+  const lights = [...Array(SIZE)].map(() => Array(SIZE).fill(0))
 
   for (const [action, x1, y1, x2, y2] of instructions) {
     for (let x = x1; x <= x2; x++) {

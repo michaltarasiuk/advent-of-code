@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["node"],
     "lib": ["esnext"],
     "target": "esnext",
     "module": "nodenext",

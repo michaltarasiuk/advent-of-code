@@ -3,12 +3,13 @@
   "scripts": {
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "tsc:check": "tsc --noEmit --incremental false"
+    "tsc:check": "tsgo --noEmit --incremental false"
   },
   "dependencies": {
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/node": "^25.6.2",
     "@typescript/native-preview": "7.0.0-dev.20260115.1",
     "oxfmt": "^0.24.0"
   }

@@ -1,17 +1,12 @@
-import assert from "node:assert"
 import {z} from "zod"
 
-const EnvSchema = z.object({
-  session: z.string(),
-})
-export const env = EnvSchema.parse(process.env)
-
 export async function fetchInput(meta: ImportMeta) {
+  const {session} = z.object({session: z.string()}).parse(process.env)
   const [, year, day] = meta.url.match(/year-(\d+)\/day-(\d+)/) ?? raise("Invalid path")
   const response = await fetch(`https://adventofcode.com/20${year}/day/${Number(day)}/input`, {
     headers: {
       Accept: "text/plain",
-      Cookie: `session=${env.session}`,
+      Cookie: `session=${session}`,
     },
   })
   return (await response.text()).trimEnd()
@@ -21,7 +16,7 @@ export function raise(message: string): never {
   throw new Error(message)
 }
 
-export function isDefined(v: unknown) {
+export function isDefined<T>(v: T): v is NonNullable<T> {
   return v !== undefined && v !== null
 }
 
@@ -44,24 +39,18 @@ export function chunkEvery<T>(iterable: Iterable<T>, size: number) {
   if (size < 1 || !Number.isInteger(size)) {
     throw new RangeError(`Expected size to be an integer greater than 0 but found ${size}`)
   }
-  const chunks: T[][] = [[]]
+  const chunks: T[][] = []
+  let i = 0
   for (const v of iterable) {
-    const chunk = chunks.at(-1) ?? raise("Empty chunks")
-    if (chunk.length === size) {
-      chunks.push([v])
-    } else {
-      chunk.push(v)
-    }
+    if (i % size === 0) chunks.push([])
+    chunks.at(-1)!.push(v)
+    i++
   }
   return chunks
 }
 
 export function stringToCodePoints(s: string, fn = (codePoint: number) => codePoint) {
-  return [...s].map(c => {
-    const codePoint = c.codePointAt(0)
-    assert(isDefined(codePoint))
-    return fn(codePoint)
-  })
+  return [...s].map(c => fn(c.codePointAt(0)!))
 }
 
 export function* divisors(n: number) {

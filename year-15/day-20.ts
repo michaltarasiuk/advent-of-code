@@ -14,9 +14,8 @@ while (true) {
   )
   if (housePresents >= Number(input)) {
     break
-  } else {
-    houseNumber++
   }
+  houseNumber++
 }
 
 assert.strictEqual(houseNumber, 665280, "Part 1 failed")

@@ -24,7 +24,7 @@ for (let i = 0; password2.includes("_"); i++) {
     continue
   }
   const pos = Number(hash[5])
-  if (!password2[pos] || password2[pos] !== "_") {
+  if (password2[pos] !== "_") {
     continue
   }
   password2 = [...password2].toSpliced(pos, 1, hash[6]).join("")

@@ -19,17 +19,11 @@ function createPosition() {
   }
 }
 
-const visitedHouses = (() => {
-  const santa = createPosition()
-  const visited = new Set(input.map(d => String(santa.move(d))))
-  return visited
-})()
+const santa = createPosition()
+const visitedHouses = new Set(input.map(d => String(santa.move(d))))
 
-const visitedHousesWithRoboSanta = (() => {
-  const santas = [createPosition(), createPosition()]
-  const visited = new Set(input.map((d, i) => String(santas[i % 2].move(d))))
-  return visited
-})()
+const santas = [createPosition(), createPosition()]
+const visitedHousesWithRoboSanta = new Set(input.map((d, i) => String(santas[i % 2].move(d))))
 
 assert.strictEqual(visitedHouses.size, 2565, "Part 1 failed")
 assert.strictEqual(visitedHousesWithRoboSanta.size, 2639, "Part 2 failed")

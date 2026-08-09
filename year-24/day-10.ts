@@ -46,12 +46,12 @@ for (const [y, r] of grid.entries()) {
   }
 }
 
-const totalScore = Object.keys(trailheadScores)
-  .map(id => trailheadScores[id].size)
+const totalScore = Object.values(trailheadScores)
+  .map(s => s.size)
   .reduce((a, b) => a + b)
 
-const totalRating = Object.keys(trailheadRatings)
-  .map(id => trailheadRatings[id].length)
+const totalRating = Object.values(trailheadRatings)
+  .map(r => r.length)
   .reduce((a, b) => a + b)
 
 assert.strictEqual(totalScore, 548, "Part 1 failed")

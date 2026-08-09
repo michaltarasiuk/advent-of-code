@@ -18,10 +18,9 @@ function isValidPassword(s: string) {
 
 function findNewPassword(password: string) {
   let int = Number.parseInt(password, 36)
-  let newPassword = int.toString(36)
+  let newPassword: string
   do {
-    int++
-    newPassword = int.toString(36)
+    newPassword = (++int).toString(36)
   } while (!isValidPassword(newPassword))
   return newPassword
 }

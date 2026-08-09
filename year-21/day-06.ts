@@ -18,5 +18,5 @@ for (const lanternFish of input.split("").map(Number)) {
   timers[lanternFish]++
 }
 
-assert.strictEqual(simulateLanternFishGrowth(timers, 80), 385391, "Part 1")
-assert.strictEqual(simulateLanternFishGrowth(timers, 256), 1728611055389, "Part 2")
+assert.strictEqual(simulateLanternFishGrowth(timers, 80), 385391, "Part 1 failed")
+assert.strictEqual(simulateLanternFishGrowth(timers, 256), 1728611055389, "Part 2 failed")

@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 4})
+const input = await fetchInput(import.meta)
 
 function hasUniqueWords(words: string[]) {
   return words.length === new Set(words).size

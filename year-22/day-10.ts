@@ -3,7 +3,7 @@ import {z} from "zod"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 10})
+const input = await fetchInput(import.meta)
 
 const instructionSchema = z.union([
   z.object({op: z.literal("addx"), arg: z.string().transform(Number)}),

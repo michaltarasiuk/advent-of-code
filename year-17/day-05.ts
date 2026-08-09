@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 5})
+const input = await fetchInput(import.meta)
 
 function countStepsToExit(
   [...jumps]: number[],

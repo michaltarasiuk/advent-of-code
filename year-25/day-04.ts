@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2025, day: 4})
+const input = await fetchInput(import.meta)
 
 const PAPER_ROLL = "@"
 const MAX_ADJACENT_ROLLS_FOR_ACCESS = 4

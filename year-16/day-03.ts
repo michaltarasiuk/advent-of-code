@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {chunkEvery, fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 3})
+const input = await fetchInput(import.meta)
 
 const TRIANGLE_SIDES = 3
 

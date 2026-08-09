@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, frequencies, isDefined, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2021, day: 14})
+const input = await fetchInput(import.meta)
 
 function pairInsertion([...polymerElements]: string, rules: Map<string, string>) {
   let polymer = ""

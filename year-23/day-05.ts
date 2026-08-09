@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isDefined} from "../lib.js"
 
-const input = await fetchInput({year: 2023, day: 5})
+const input = await fetchInput(import.meta)
 
 function parseLine(l: string) {
   return l.split(/\s+/).map(Number)

@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 20})
+const input = await fetchInput(import.meta)
 
 function parseCoords(coords: string) {
   const coordsRe = /^[pva]=<(-?\d+),(-?\d+),(-?\d+)>$/

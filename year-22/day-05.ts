@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 5})
+const input = await fetchInput(import.meta)
 
 function parseInstruction(i: string) {
   const instructionRe = /^move (\d+) from (\d+) to (\d+)$/

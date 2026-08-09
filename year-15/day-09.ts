@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, permute, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 9})
+const input = await fetchInput(import.meta)
 
 function parseDistance(l: string) {
   const distanceRe = /^(\w+) to (\w+) = (\d+)$/

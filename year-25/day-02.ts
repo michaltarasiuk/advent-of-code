@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2025, day: 2})
+const input = await fetchInput(import.meta)
 
 function isValidId(id: string, m = "") {
   let end = 0

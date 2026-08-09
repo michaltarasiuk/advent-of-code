@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2023, day: 9})
+const input = await fetchInput(import.meta)
 
 function extrapolate(...ns: number[]): number[] {
   const diffs = ns.slice(0, -1).map((n, i) => ns.at(i + 1)! - n)

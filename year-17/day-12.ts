@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 12})
+const input = await fetchInput(import.meta)
 
 function parseProgram(program: string) {
   const [id, connections] = program.split(" <-> ")

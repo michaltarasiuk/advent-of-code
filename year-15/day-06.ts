@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 6})
+const input = await fetchInput(import.meta)
 
 const ACTIONS = {
   turnOn: "turn on",

@@ -3,7 +3,7 @@ import crypto from "node:crypto"
 
 import {fetchInput} from "../lib.js"
 
-const s = await fetchInput({year: 2015, day: 4})
+const s = await fetchInput(import.meta)
 
 function md5(data: crypto.BinaryLike) {
   return crypto.createHash("md5").update(data).digest("hex")

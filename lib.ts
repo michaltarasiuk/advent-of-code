@@ -6,8 +6,9 @@ const EnvSchema = z.object({
 })
 export const env = EnvSchema.parse(process.env)
 
-export async function fetchInput({year, day}: {year: number; day: number}) {
-  const response = await fetch(`https://adventofcode.com/${year}/day/${day}/input`, {
+export async function fetchInput(meta: ImportMeta) {
+  const [, year, day] = meta.url.match(/year-(\d+)\/day-(\d+)/) ?? raise("Invalid path")
+  const response = await fetch(`https://adventofcode.com/20${year}/day/${Number(day)}/input`, {
     headers: {
       Accept: "text/plain",
       Cookie: `session=${env.session}`,

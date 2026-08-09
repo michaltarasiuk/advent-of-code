@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isDefined} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 7})
+const input = await fetchInput(import.meta)
 
 type Filesystem = Record<string, number>
 type Cmd = [cmd: string[], ...output: string[]]

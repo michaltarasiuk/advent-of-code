@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {castArray, fetchInput, isDefined} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 13})
+const input = await fetchInput(import.meta)
 
 type Packet = (Packet | number)[]
 

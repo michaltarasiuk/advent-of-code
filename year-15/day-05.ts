@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 5})
+const input = await fetchInput(import.meta)
 
 const niceStringsCount = input
   .split("\n")

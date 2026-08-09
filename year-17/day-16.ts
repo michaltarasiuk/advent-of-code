@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 16})
+const input = await fetchInput(import.meta)
 
 function dance(moves: string[], ...programs: string[]) {
   for (const m of moves) {

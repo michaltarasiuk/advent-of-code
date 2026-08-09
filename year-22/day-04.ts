@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 4})
+const input = await fetchInput(import.meta)
 
 function parseRange(r: string) {
   const [a, b, c, d] = r.split(/[-,]/)

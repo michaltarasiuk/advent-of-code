@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 13})
+const input = await fetchInput(import.meta)
 
 type Buttons = [A: [x: number, y: number], B: [x: number, y: number]]
 type Shape = [...Buttons, Prize: [X: number, Y: number]]

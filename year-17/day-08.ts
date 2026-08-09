@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 8})
+const input = await fetchInput(import.meta)
 
 const registers: Record<string, number> = {}
 let maxEverSeen = -Infinity

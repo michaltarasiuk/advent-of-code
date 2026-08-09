@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 18})
+const input = await fetchInput(import.meta)
 
 type LightGrid = typeof initialGrid
 

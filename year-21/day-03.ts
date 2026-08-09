@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, frequencies, transpose} from "../lib.js"
 
-const input = await fetchInput({year: 2021, day: 3})
+const input = await fetchInput(import.meta)
 
 const mostCommonBit = (bits: string[]) => {
   const frequency = frequencies(bits)

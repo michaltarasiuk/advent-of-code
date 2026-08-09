@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isKeyof} from "../lib.js"
 
-const input = await fetchInput({year: 2020, day: 4})
+const input = await fetchInput(import.meta)
 
 const PASSPORT_KEYS = {
   byr: /^(19[2-9]\d|200[0-2])$/,

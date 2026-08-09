@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 14})
+const input = await fetchInput(import.meta)
 
 const TIME = 100
 const TILES_WIDE = 101

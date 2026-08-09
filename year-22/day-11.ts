@@ -3,7 +3,7 @@ import {z} from "zod"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 11})
+const input = await fetchInput(import.meta)
 
 const monkeyRe = new RegExp(`\
 Monkey (?<id>\\d):

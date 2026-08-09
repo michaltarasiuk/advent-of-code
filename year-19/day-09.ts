@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {chunkEvery, fetchInput, frequencies} from "../lib.js"
 
-const input = await fetchInput({year: 2019, day: 8})
+const input = await fetchInput(import.meta)
 
 const WIDE = 25
 const TALL = 6

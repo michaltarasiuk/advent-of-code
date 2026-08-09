@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2023, day: 1})
+const input = await fetchInput(import.meta)
 
 const digitRe = /\d/
 const lastdigitRe = new RegExp(`.*(${digitRe.source})`)

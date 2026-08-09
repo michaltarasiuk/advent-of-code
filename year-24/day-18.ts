@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 18})
+const input = await fetchInput(import.meta)
 
 const SIZE = 71
 const MAX_BYTES = 1024

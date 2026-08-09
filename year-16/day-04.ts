@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, frequencies, raise, stringToCodePoints} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 4})
+const input = await fetchInput(import.meta)
 
 function calcChecksum(...chars: string[]) {
   return [...frequencies(chars)]

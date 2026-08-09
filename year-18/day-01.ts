@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2018, day: 1})
+const input = await fetchInput(import.meta)
 
 const changes = input.split("\n").map(Number)
 const resultFreq = changes.reduce((a, b) => a + b)

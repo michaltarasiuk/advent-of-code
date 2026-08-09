@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2020, day: 2})
+const input = await fetchInput(import.meta)
 
 const passwordRe = /^(\d+)-(\d+) (\w): (\w+)$/
 const passwords = input.split("\n").map(l => {

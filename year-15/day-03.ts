@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const [...input] = await fetchInput({year: 2015, day: 3})
+const [...input] = await fetchInput(import.meta)
 
 function createPosition() {
   let x = 0

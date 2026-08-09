@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 2})
+const input = await fetchInput(import.meta)
 
 function calcPaper({l, w, h}: {l: number; w: number; h: number}) {
   const [lw, wh, hl] = [l * w, w * h, h * l]

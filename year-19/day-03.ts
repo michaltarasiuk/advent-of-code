@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2019, day: 3})
+const input = await fetchInput(import.meta)
 
 function parseWirePath(path: string) {
   return path.matchAll(/([RLUD])(\d+)/g).map(([, dir, distance]) => {

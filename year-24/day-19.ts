@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 19})
+const input = await fetchInput(import.meta)
 
 function countWays(design: string, patterns: RegExp[], cache: Record<typeof design, number> = {}) {
   if (!design) return 1

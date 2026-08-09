@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 6})
+const input = await fetchInput(import.meta)
 
 function* reallocate([...banks]: number[]) {
   const visited = new Set<string>()

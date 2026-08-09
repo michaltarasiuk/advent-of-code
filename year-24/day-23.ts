@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 23})
+const input = await fetchInput(import.meta)
 
 function* permuteConnections(connections: string[], arrayLength: number): Generator<string[]> {
   if (arrayLength === 0) {

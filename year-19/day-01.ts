@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2019, day: 1})
+const input = await fetchInput(import.meta)
 
 function calcFuel(mass: number) {
   return Math.floor(mass / 3) - 2

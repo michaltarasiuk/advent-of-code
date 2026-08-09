@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2021, day: 8})
+const input = await fetchInput(import.meta)
 
 function parseEntry(e: string) {
   const [uniqueSignalPatterns, fourDigitOutputs] = e.split(" | ").map(v => v.split(/\s/))

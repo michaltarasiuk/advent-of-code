@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 2})
+const input = await fetchInput(import.meta)
 
 const SHAPES_COUNT = 3
 const POINTS = {win: 6, draw: 3, lose: 0}

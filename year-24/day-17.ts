@@ -3,7 +3,7 @@ import {z} from "zod"
 
 import {chunkEvery, fetchInput, isKeyof} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 17})
+const input = await fetchInput(import.meta)
 
 function calcComboValue(operand: number, registers: {a: number; b: number; c: number}) {
   if (operand <= 3) {

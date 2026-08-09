@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isDefined, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2018, day: 4})
+const input = await fetchInput(import.meta)
 
 function parseRecord(record: string) {
   const recordRe = /^\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2})\] (.+)$/

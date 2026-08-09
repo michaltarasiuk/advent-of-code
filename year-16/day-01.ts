@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 1})
+const input = await fetchInput(import.meta)
 
 function createCoords() {
   const dirs = {n: 0, e: 0, s: 0, w: 0}

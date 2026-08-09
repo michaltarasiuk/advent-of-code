@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 6})
+const input = await fetchInput(import.meta)
 
 function findMarkerEndIndex([...chars]: string, markerLength: number) {
   const markerStartIndex = chars.findIndex((_, i) => {

@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isKeyof, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 23})
+const input = await fetchInput(import.meta)
 
 function execute({...registers}: {a: number; b: number}, ...instructions: string[][]) {
   let i = 0

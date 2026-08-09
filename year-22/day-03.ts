@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {chunkEvery, fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 3})
+const input = await fetchInput(import.meta)
 
 function splitRucksack(rucksack: string) {
   return [rucksack.slice(0, rucksack.length / 2), rucksack.slice(rucksack.length / 2)] as const

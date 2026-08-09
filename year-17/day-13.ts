@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 13})
+const input = await fetchInput(import.meta)
 
 function isCaught({depth, range}: {depth: number; range: number}, delay = 0) {
   return (depth + delay) % (2 * range - 2) === 0

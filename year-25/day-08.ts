@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isDefined} from "../lib.js"
 
-const input = await fetchInput({year: 2025, day: 8})
+const input = await fetchInput(import.meta)
 
 const SHORTEST_CONNECTIONS = 1000
 const TOP_CIRCUITS = 3

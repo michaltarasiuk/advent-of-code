@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {divisors, fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 20})
+const input = await fetchInput(import.meta)
 
 const PRESENTS_PER_HOUSE = 10
 

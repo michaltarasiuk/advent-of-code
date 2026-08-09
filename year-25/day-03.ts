@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2025, day: 3})
+const input = await fetchInput(import.meta)
 
 function findMaxJoltage(bank: number[], len: number) {
   let joltage = ""

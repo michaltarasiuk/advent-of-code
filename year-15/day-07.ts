@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isDefined} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 7})
+const input = await fetchInput(import.meta)
 
 function parseInstruction(instruction: string) {
   return [...(instruction.match(/[A-Z]+/) ?? []), ...(instruction.match(/([a-z]|[0-9])+/g) ?? [])]

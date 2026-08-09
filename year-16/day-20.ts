@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isDefined, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 20})
+const input = await fetchInput(import.meta)
 
 type Range = ReturnType<typeof parseRange>
 

@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isKeyof} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 12})
+const input = await fetchInput(import.meta)
 
 function execute(
   {...registers}: Record<"a" | "b" | "c" | "d", number>,

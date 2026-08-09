@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isDefined, isKeyof} from "../lib.js"
 
-const input = await fetchInput({year: 2021, day: 10})
+const input = await fetchInput(import.meta)
 
 const SYNTAX_ERROR_POINTS = {
   ")": 3,

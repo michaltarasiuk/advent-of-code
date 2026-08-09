@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2023, day: 13})
+const input = await fetchInput(import.meta)
 
 function parsePattern(p: string) {
   const rows = p.split("\n")

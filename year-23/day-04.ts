@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2023, day: 4})
+const input = await fetchInput(import.meta)
 
 function countTotalCards(cards: Map<number, Set<number>>, ids = cards.keys().toArray()): number {
   return ids.reduce((acc, id) => {

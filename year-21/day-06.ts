@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2021, day: 6})
+const input = await fetchInput(import.meta)
 
 function simulateLanternFishGrowth([...fishTimers]: number[], days: number) {
   for (let day = 1; day <= days; day++) {

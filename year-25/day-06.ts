@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, transpose} from "../lib.js"
 
-const input = await fetchInput({year: 2025, day: 6})
+const input = await fetchInput(import.meta)
 
 const lines = input.split("\n")
 

@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2021, day: 7})
+const input = await fetchInput(import.meta)
 
 function* getPositionRange(positions: number[]) {
   for (let i = Math.min(...positions); i <= Math.max(...positions); i++) {

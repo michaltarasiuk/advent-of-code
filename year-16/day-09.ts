@@ -3,7 +3,7 @@ import {z} from "zod"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 9})
+const input = await fetchInput(import.meta)
 
 const markerGroupsSchema = z.object({
   length: z.string().transform(Number),

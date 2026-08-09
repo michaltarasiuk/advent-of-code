@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 8})
+const input = await fetchInput(import.meta)
 
 const TALL = 6
 const WIDE = 50

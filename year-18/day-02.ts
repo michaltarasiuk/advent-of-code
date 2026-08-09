@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, frequencies} from "../lib.js"
 
-const input = await fetchInput({year: 2018, day: 2})
+const input = await fetchInput(import.meta)
 
 function mapBoxIdToIndexedChars(boxId: string) {
   return Array.from(boxId, (char, i) => char + `[${i}]`)

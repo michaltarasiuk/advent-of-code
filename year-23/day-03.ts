@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isDefined} from "../lib.js"
 
-const input = await fetchInput({year: 2023, day: 3})
+const input = await fetchInput(import.meta)
 
 type Layer = string[][]
 

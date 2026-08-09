@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2020, day: 16})
+const input = await fetchInput(import.meta)
 
 function parseRule(rule: string) {
   const ruleRe = /^(.+): (\d+)-(\d+) or (\d+)-(\d+)$/

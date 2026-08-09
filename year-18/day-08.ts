@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2018, day: 8})
+const input = await fetchInput(import.meta)
 
 const nodes = input.split(" ").map(Number)
 

@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, frequencies, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 1})
+const input = await fetchInput(import.meta)
 
 const locations = input.split("\n").map(ln => {
   const locationPairRe = /^(\d+) {3}(\d+)$/

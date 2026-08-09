@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, frequencies} from "../lib.js"
 
-const input = await fetchInput({year: 2023, day: 7})
+const input = await fetchInput(import.meta)
 
 const CARDS = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
 const HAND_TYPES = {

@@ -3,7 +3,7 @@ import {z} from "zod"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2021, day: 5})
+const input = await fetchInput(import.meta)
 
 const coordinate = z.string().transform(Number)
 const ventSchema = z

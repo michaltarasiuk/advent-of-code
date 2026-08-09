@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isDefined} from "../lib.js"
 
-const input = await fetchInput({year: 2025, day: 5})
+const input = await fetchInput(import.meta)
 
 const [ranges, ids] = input.split("\n\n").map(p => p.split("\n"))
 

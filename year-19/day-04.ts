@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2019, day: 4})
+const input = await fetchInput(import.meta)
 
 const [start, end] = input.split("-").map(Number)
 

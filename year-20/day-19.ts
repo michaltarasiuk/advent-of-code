@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2020, day: 19})
+const input = await fetchInput(import.meta)
 
 type Rule = ReturnType<typeof parseRule>
 

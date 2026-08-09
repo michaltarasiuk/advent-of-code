@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2021, day: 1})
+const input = await fetchInput(import.meta)
 
 function countIncreases(measurements: number[], windowSize: number) {
   return measurements.reduce((acc, depth, i) => {

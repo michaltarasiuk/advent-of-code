@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2018, day: 6})
+const input = await fetchInput(import.meta)
 
 function uppercaseLetterForIndex(index: number) {
   return String.fromCharCode(65 + index)

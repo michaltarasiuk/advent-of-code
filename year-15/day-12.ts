@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isRecord} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 12})
+const input = await fetchInput(import.meta)
 
 const numbers: number[] = []
 const numbersWithoutRed: number[] = []

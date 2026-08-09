@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 7})
+const input = await fetchInput(import.meta)
 
 const abbaRe = /(\w)((?!\1)\w)\2\1/
 const abaRe = /(\w)((?!\1)\w)\1.* .*\2\1\2.*/

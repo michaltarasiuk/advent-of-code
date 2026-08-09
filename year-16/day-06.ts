@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, frequencies} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 6})
+const input = await fetchInput(import.meta)
 
 function decodeMessage(cols: string[][], compareFn = (a: number, b: number) => a - b) {
   return cols.reduce((decodedMessage, columnChars) => {

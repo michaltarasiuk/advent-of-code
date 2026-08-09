@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 25})
+const input = await fetchInput(import.meta)
 
 const SCHEMATIC_SIZE = 5
 const FILLED = "#"

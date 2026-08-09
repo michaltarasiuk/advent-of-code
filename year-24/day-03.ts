@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 3})
+const input = await fetchInput(import.meta)
 
 const multiplyRe = /mul\((\d+),(\d+)\)/g
 const multiplyRe2 = /mul\((\d+),(\d+)\)|don't\(\)|do\(\)/g

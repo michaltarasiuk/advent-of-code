@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isKeyof} from "../lib.js"
 
-const input = await fetchInput({year: 2024, day: 7})
+const input = await fetchInput(import.meta)
 
 const OPERATORS = {
   "+": (a, b) => a + b,

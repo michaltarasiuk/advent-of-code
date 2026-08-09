@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2016, day: 2})
+const input = await fetchInput(import.meta)
 
 const KEYPAD = [
   ["1", "2", "3"],

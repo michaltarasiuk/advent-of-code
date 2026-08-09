@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isKeyof, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2015, day: 16})
+const input = await fetchInput(import.meta)
 
 const TICKER_TAPE = {
   children: 3,

@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 1})
+const input = await fetchInput(import.meta)
 
 const digits = Array.from(input, Number)
 

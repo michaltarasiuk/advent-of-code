@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, isKeyof} from "../lib.js"
 
-const input = await fetchInput({year: 2023, day: 2})
+const input = await fetchInput(import.meta)
 
 const lines = input.split("\n")
 const games = lines.map(l =>

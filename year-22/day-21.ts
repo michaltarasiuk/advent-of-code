@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2022, day: 21})
+const input = await fetchInput(import.meta)
 
 function parseJob(monkeyJob: string) {
   const jobRe = /^(\w{4}): (.+)$/

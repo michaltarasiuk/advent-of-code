@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2018, day: 3})
+const input = await fetchInput(import.meta)
 
 function parseClaim(claim: string) {
   const claimRe = /^#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$/

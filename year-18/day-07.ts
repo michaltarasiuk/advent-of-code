@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2018, day: 7})
+const input = await fetchInput(import.meta)
 
 function parseStep(step: string) {
   const stepRe = /^Step (\w) must be finished before step (\w) can begin.$/

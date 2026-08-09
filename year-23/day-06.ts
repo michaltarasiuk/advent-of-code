@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput} from "../lib.js"
 
-const input = await fetchInput({year: 2023, day: 6})
+const input = await fetchInput(import.meta)
 
 function countWaysOfBeatRecord(time: number, record: number) {
   let count = 0

@@ -2,7 +2,7 @@ import assert from "node:assert"
 
 import {fetchInput, raise} from "../lib.js"
 
-const input = await fetchInput({year: 2017, day: 18})
+const input = await fetchInput(import.meta)
 
 const instructionRe = /^(\w{3}) (\w)(?: (\S+))?$/
 const instructions = input.split("\n").map(l => {

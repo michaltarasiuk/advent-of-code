@@ -1,22 +1,16 @@
 import assert from "node:assert"
-import {z} from "zod"
 
-import {fetchInput} from "../lib.js"
+import {fetchInput, raise} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
-const coordinate = z.string().transform(Number)
-const ventSchema = z
-  .object({x1: coordinate, y1: coordinate, x2: coordinate, y2: coordinate})
-  .transform(({x1, y1, x2, y2}) => {
-    if (x1 > x2) [x1, x2] = [x2, x1]
-    if (y1 > y2) [y1, y2] = [y2, y1]
-    return {x1, y1, x2, y2}
-  })
-
 function parseVent(l: string) {
-  const ventRe = /^(?<x1>\d+),(?<y1>\d+) -> (?<x2>\d+),(?<y2>\d+)$/
-  return ventSchema.parse(ventRe.exec(l)?.groups)
+  const ventRe = /^(\d+),(\d+) -> (\d+),(\d+)$/
+  const [, ...coords] = ventRe.exec(l) ?? raise("Invalid vent")
+  let [x1, y1, x2, y2] = coords.map(Number)
+  if (x1 > x2) [x1, x2] = [x2, x1]
+  if (y1 > y2) [y1, y2] = [y2, y1]
+  return {x1, y1, x2, y2}
 }
 
 const diagram: Record<string, number> = {}

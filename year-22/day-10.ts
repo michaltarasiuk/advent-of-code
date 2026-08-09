@@ -1,29 +1,24 @@
 import assert from "node:assert"
-import {z} from "zod"
 
 import {fetchInput} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
-const instructionSchema = z.union([
-  z.object({op: z.literal("addx"), arg: z.string().transform(Number)}),
-  z.object({op: z.literal("noop")}),
-])
-function parseInstruction(instruction: string) {
-  const [op, arg] = instruction.split(/\s/)
-  return instructionSchema.parse({op, arg})
+type Instruction = {op: "addx"; arg: number} | {op: "noop"}
+
+function parseInstruction(line: string): Instruction {
+  const [op, arg] = line.split(/\s/)
+  return op === "addx" ? {op, arg: Number(arg)} : {op: "noop"}
 }
 
-function calcSignal(instructions: z.infer<typeof instructionSchema>[]) {
+function calcSignal(instructions: Instruction[]) {
   return instructions.reduce((acc, i) => (i.op === "addx" ? acc + i.arg : acc), 1)
 }
 
-const instructions = input
+const instructions: Instruction[] = input
   .split("\n")
   .map(parseInstruction)
-  .flatMap((instruction): z.infer<typeof instructionSchema>[] =>
-    instruction.op === "addx" ? [{op: "noop"}, instruction] : [instruction],
-  )
+  .flatMap(i => (i.op === "addx" ? [{op: "noop"} as const, i] : [i]))
 
 const CYCLES = [20, 60, 100, 140, 180, 220]
 const sumOfSignals = CYCLES.reduce(

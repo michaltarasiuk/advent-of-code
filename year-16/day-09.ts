@@ -1,21 +1,17 @@
 import assert from "node:assert"
-import {z} from "zod"
 
 import {fetchInput, raise} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
-const markerGroupsSchema = z.object({
-  length: z.string().transform(Number),
-  repeatCount: z.string().transform(Number),
-})
-const markerRe = /\((?<length>\d+)x(?<repeatCount>\d+)\)/g
+const markerRe = /\((\d+)x(\d+)\)/g
 
 let decompressed = input
 let exec: RegExpExecArray | null = null
 while ((exec = markerRe.exec(decompressed))) {
-  const {0: match, groups, index = raise("Invalid index")} = exec
-  const {length, repeatCount} = markerGroupsSchema.parse(groups)
+  const {0: match, index = raise("Invalid index")} = exec
+  const length = Number(exec[1])
+  const repeatCount = Number(exec[2])
 
   const marked = decompressed.slice(index + match.length, index + match.length + length)
 

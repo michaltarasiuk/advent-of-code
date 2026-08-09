@@ -4,15 +4,11 @@ import {fetchInput} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
-function findMarkerEndIndex([...chars]: string, markerLength: number) {
-  const markerStartIndex = chars.findIndex((_, i) => {
-    const marker = new Set(input.slice(i, i + markerLength))
-    return marker.size === markerLength
+function findMarkerEndIndex(s: string, markerLength: number) {
+  const index = [...s].findIndex((_, i) => {
+    return new Set(s.slice(i, i + markerLength)).size === markerLength
   })
-  if (markerStartIndex === -1) {
-    return -1
-  }
-  return markerStartIndex + markerLength
+  return index === -1 ? -1 : index + markerLength
 }
 
 assert.strictEqual(findMarkerEndIndex(input, 4), 1343, "Part 1 failed")

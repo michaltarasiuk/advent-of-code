@@ -1,20 +1,19 @@
 import assert from "node:assert"
 
-import {fetchInput, isDefined} from "../lib.js"
+import {fetchInput} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
 function parseInstruction(instruction: string) {
   return [...(instruction.match(/[A-Z]+/) ?? []), ...(instruction.match(/([a-z]|[0-9])+/g) ?? [])]
 }
-const circuit = input.split("\n").reduce<Record<string, string[]>>((acc, l) => {
-  const instruction = parseInstruction(l)
-  const dest = instruction.pop()
-  if (isDefined(dest)) {
-    acc[dest] = instruction
-  }
-  return acc
-}, {})
+
+const circuit: Record<string, string[]> = {}
+for (const l of input.split("\n")) {
+  const parts = parseInstruction(l)
+  const dest = parts.pop()!
+  circuit[dest] = parts
+}
 
 function calcSignalOrParse(s: string, cache: Map<string, number>) {
   const parsed = Number(s)

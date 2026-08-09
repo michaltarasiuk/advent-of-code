@@ -25,15 +25,13 @@ const passports = input.split("\n\n").map(p => {
   )
 })
 
-const validPassportsCount = passports
-  .map(p => Object.keys(PASSPORT_KEYS).every(k => isKeyof(p, k)))
-  .map(Number)
-  .reduce((a, b) => a + b)
+const validPassportsCount = passports.filter(p =>
+  Object.keys(PASSPORT_KEYS).every(k => isKeyof(p, k)),
+).length
 
-const validPassportsCount2 = passports
-  .map(p => Object.entries(PASSPORT_KEYS).every(([k, re]) => isKeyof(p, k) && re.test(p[k])))
-  .map(Number)
-  .reduce((a, b) => a + b)
+const validPassportsCount2 = passports.filter(p =>
+  Object.entries(PASSPORT_KEYS).every(([k, re]) => isKeyof(p, k) && re.test(p[k])),
+).length
 
 assert.strictEqual(validPassportsCount, 208, "Part 1 failed")
 assert.strictEqual(validPassportsCount2, 167, "Part 2 failed")

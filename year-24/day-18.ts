@@ -47,7 +47,7 @@ function findShortestPath(memoryGrid: string[][]): number {
 }
 
 const bytes = input.split("\n").map(l => l.split(",").map(Number))
-const memorySpace = [...Array(SIZE)].map(() => Array(SIZE).fill(SAFE))
+const memorySpace = Array.from({length: SIZE}, () => Array(SIZE).fill(SAFE))
 
 for (const [i, j] of bytes.splice(0, MAX_BYTES)) {
   memorySpace[j][i] = CORRUPTED

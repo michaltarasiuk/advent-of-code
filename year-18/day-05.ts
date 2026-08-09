@@ -22,12 +22,10 @@ function reactPolymer(polymer: string) {
 }
 
 const reactedPolymer = reactPolymer(input)
-const minPolymerLength = [..."abcdefghijklmnopqrstuvwxyz"]
-  .map(unit => {
-    const unitRe = new RegExp(unit, "gi")
-    return reactPolymer(input.replace(unitRe, "")).length
-  })
-  .reduce((acc, len) => Math.min(acc, len), input.length)
+const polymerLengths = [..."abcdefghijklmnopqrstuvwxyz"].map(
+  unit => reactPolymer(input.replace(new RegExp(unit, "gi"), "")).length,
+)
+const minPolymerLength = Math.min(...polymerLengths)
 
 assert.strictEqual(reactedPolymer.length, 10972, "Part 1 failed")
 assert.strictEqual(minPolymerLength, 5278, "Part 2 failed")

@@ -1,7 +1,6 @@
 import assert from "node:assert"
-import {z} from "zod"
 
-import {fetchInput} from "../lib.js"
+import {fetchInput, raise} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
@@ -13,28 +12,28 @@ Monkey (?<id>\\d):
     If true: throw to monkey (?<throwToIfDivisible>\\d+)
     If false: throw to monkey (?<throwToIfIndivisible>\\d+)`)
 
-const monkeySchema = z.object({
-  id: z.string().transform(Number),
-  items: z.string().transform(items => items.split(", ").map(Number)),
-  operation: z.string(),
-  divider: z.string().transform(Number),
-  throwToIfDivisible: z.string().transform(Number),
-  throwToIfIndivisible: z.string().transform(Number),
-  inspects: z.number().default(0),
-})
-const monkeyWithInspection = monkeySchema.transform(m => ({
-  ...m,
-  inspect(this: typeof m, old: number) {
-    this.inspects++
-    return Math.floor(eval(this.operation) / 3)
-  },
-}))
+function parseMonkey(block: string) {
+  const groups = monkeyRe.exec(block)?.groups ?? raise("Invalid monkey")
+  return {
+    id: Number(groups.id),
+    items: groups.items.split(", ").map(Number),
+    operation: groups.operation,
+    divider: Number(groups.divider),
+    throwToIfDivisible: Number(groups.throwToIfDivisible),
+    throwToIfIndivisible: Number(groups.throwToIfIndivisible),
+    inspects: 0,
+    inspect(old: number) {
+      this.inspects++
+      return Math.floor(eval(this.operation) / 3)
+    },
+  }
+}
 
 const ROUNDS_COUNT = 20
 const monkeys = new Map(
   input
     .split("\n\n")
-    .map(m => monkeyWithInspection.parse(monkeyRe.exec(m)?.groups))
+    .map(parseMonkey)
     .map(m => [m.id, m]),
 )
 

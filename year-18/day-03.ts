@@ -15,8 +15,8 @@ const claims = input.split("\n").map(parseClaim)
 const overlappingClaims = new Set<number>()
 
 const FABRIC_SIZE = 1_000
-const fabric = [...Array(FABRIC_SIZE)].map(() =>
-  [...Array(FABRIC_SIZE)].map(() => new Set<number>()),
+const fabric = Array.from({length: FABRIC_SIZE}, () =>
+  Array.from({length: FABRIC_SIZE}, () => new Set<number>()),
 )
 
 for (const {id, x, y, width, height} of claims) {

@@ -4,25 +4,18 @@ import {fetchInput, raise} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
-const ACTIONS = {
-  turnOn: "turn on",
-  turnOff: "turn off",
-  toggle: "toggle",
-}
-
 function parseInstruction(instruction: string) {
-  const instructionRe = /^(.*) (\d+),(\d+) through (\d+),(\d+)$/
-  const [, action, ...dimensions] = instruction.match(instructionRe) ?? raise("Invalid instruction")
-
-  return [action, ...dimensions.map(Number)] as const
+  const re = /^(.*) (\d+),(\d+) through (\d+),(\d+)$/
+  const [, action, ...coords] = instruction.match(re) ?? raise("Invalid instruction")
+  return [action, ...coords.map(Number)] as const
 }
 
-function setLights(
+function applyLights(
   actions: Record<string, (v: number) => number>,
-  ...instructions: ReturnType<typeof parseInstruction>[]
+  instructions: ReturnType<typeof parseInstruction>[],
 ) {
   const SIZE = 1_000
-  const lights = [...Array(SIZE)].map(() => Array(SIZE).fill(0))
+  const lights = Array.from({length: SIZE}, () => Array<number>(SIZE).fill(0))
 
   for (const [action, x1, y1, x2, y2] of instructions) {
     for (let x = x1; x <= x2; x++) {
@@ -36,21 +29,13 @@ function setLights(
 
 const instructions = input.split("\n").map(parseInstruction)
 
-const lights = setLights(
-  {
-    [ACTIONS.turnOn]: () => 1,
-    [ACTIONS.turnOff]: () => 0,
-    [ACTIONS.toggle]: v => Number(!v),
-  },
-  ...instructions,
+const lights = applyLights(
+  {"turn on": () => 1, "turn off": () => 0, toggle: v => Number(!v)},
+  instructions,
 )
-const brightness = setLights(
-  {
-    [ACTIONS.turnOn]: v => v + 1,
-    [ACTIONS.turnOff]: v => Math.max(0, v - 1),
-    [ACTIONS.toggle]: v => v + 2,
-  },
-  ...instructions,
+const brightness = applyLights(
+  {"turn on": v => v + 1, "turn off": v => Math.max(0, v - 1), toggle: v => v + 2},
+  instructions,
 )
 
 assert.strictEqual(

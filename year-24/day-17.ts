@@ -1,7 +1,6 @@
 import assert from "node:assert"
-import {z} from "zod"
 
-import {chunkEvery, fetchInput, isKeyof} from "../lib.js"
+import {chunkEvery, fetchInput, isKeyof, raise} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
@@ -18,19 +17,11 @@ function calcComboValue(operand: number, registers: {a: number; b: number; c: nu
   return operandMap[operand]
 }
 
-const inputSchema = z.object({
-  a: z.string().transform(Number),
-  b: z.string().transform(Number),
-  c: z.string().transform(Number),
-  program: z.string().transform(s => chunkEvery(s.split(",").map(Number), 2)),
-})
-const inputRe = new RegExp(`Register A: (?<a>\\d+)
-Register B: (?<b>\\d+)
-Register C: (?<c>\\d+)
+const inputRe = /Register A: (\d+)\nRegister B: (\d+)\nRegister C: (\d+)\n\nProgram: (.*)/
+const [, a, b, c, prog] = inputRe.exec(input) ?? raise("Invalid input")
 
-Program: (?<program>.*)`)
-
-const {program, ...registers} = inputSchema.parse(inputRe.exec(input)?.groups)
+const registers = {a: Number(a), b: Number(b), c: Number(c)}
+const program = chunkEvery(prog.split(",").map(Number), 2)
 const output: number[] = []
 
 let pointer = 0

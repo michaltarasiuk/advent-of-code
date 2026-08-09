@@ -4,24 +4,19 @@ import {fetchInput} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
-const STEPS_PART_1 = 40
-const STEPS_PART_2 = 50
-
-const sequenceLengths: number[] = []
-
-let currentSequence = input
-let step = 0
-
-while (++step <= STEPS_PART_2) {
-  currentSequence = currentSequence
-    .matchAll(/(\d)\1*/g)
-    .map(m => m[0].length + m[1])
-    .toArray()
-    .join("")
-  if ([STEPS_PART_1, STEPS_PART_2].includes(step)) {
-    sequenceLengths.push(currentSequence.length)
+function lookAndSay(s: string, times: number) {
+  for (let i = 0; i < times; i++) {
+    s = s
+      .matchAll(/(\d)\1*/g)
+      .map(m => m[0].length + m[1])
+      .toArray()
+      .join("")
   }
+  return s
 }
 
-assert.strictEqual(sequenceLengths[0], 492982, "Part 1 failed")
-assert.strictEqual(sequenceLengths[1], 6989950, "Part 2 failed")
+const after40 = lookAndSay(input, 40)
+const after50 = lookAndSay(after40, 10)
+
+assert.strictEqual(after40.length, 492982, "Part 1 failed")
+assert.strictEqual(after50.length, 6989950, "Part 2 failed")

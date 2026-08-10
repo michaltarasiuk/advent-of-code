@@ -7,9 +7,7 @@ const input = await fetchInput(import.meta)
 const RACE_DURATION = 2_503
 
 function parseReindeer(r: string) {
-  const reindeer = Array.from(r.matchAll(/\d+/g), Number)
-  assert(reindeer.length === 3)
-  return reindeer as [number, number, number]
+  return Array.from(r.matchAll(/\d+/g), Number) as [number, number, number]
 }
 
 function calcDistance(speed: number, duration: number, rest: number) {

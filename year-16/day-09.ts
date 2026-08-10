@@ -1,6 +1,6 @@
 import assert from "node:assert"
 
-import {fetchInput, raise} from "../lib.js"
+import {fetchInput} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
@@ -9,7 +9,7 @@ const markerRe = /\((\d+)x(\d+)\)/g
 let decompressed = input
 let exec: RegExpExecArray | null = null
 while ((exec = markerRe.exec(decompressed))) {
-  const {0: match, index = raise("Invalid index")} = exec
+  const {0: match, index} = exec
   const length = Number(exec[1])
   const repeatCount = Number(exec[2])
 

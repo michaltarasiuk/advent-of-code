@@ -5,10 +5,9 @@ import {fetchInput} from "../lib.js"
 const input = await fetchInput(import.meta)
 
 function isSorted(report: number[]) {
-  return (
-    report.join() === report.toSorted((a, b) => a - b).join() ||
-    report.join() === report.toSorted((a, b) => b - a).join()
-  )
+  const asc = report.toSorted((a, b) => a - b)
+  const desc = report.toSorted((a, b) => b - a)
+  return report.every((v, i) => v === asc[i]) || report.every((v, i) => v === desc[i])
 }
 function areAdjacentLevelsWithinRange(report: number[], min = 1, max = 3) {
   return report

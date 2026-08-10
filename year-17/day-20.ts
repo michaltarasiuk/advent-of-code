@@ -1,17 +1,16 @@
 import assert from "node:assert"
 
-import {fetchInput, raise} from "../lib.js"
+import {fetchInput} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
 function parseCoords(coords: string) {
-  const coordsRe = /^[pva]=<(-?\d+),(-?\d+),(-?\d+)>$/
-  const [, x, y, z] = coordsRe.exec(coords) ?? raise("Invalid coords")
-  return {x: Number(x), y: Number(y), z: Number(z)}
+  const [, x, y, z] = coords.match(/-?\d+/g)!.map(Number)
+  return {x, y, z}
 }
 
-function calcManhattanDistance(c: ReturnType<typeof parseCoords>) {
-  return Math.abs(c.x) + Math.abs(c.y) + Math.abs(c.z)
+function manhattan({x, y, z}: {x: number; y: number; z: number}) {
+  return Math.abs(x) + Math.abs(y) + Math.abs(z)
 }
 
 const particles = input.split("\n").map(l => {
@@ -37,7 +36,7 @@ for (const [i, {...particle}] of particles.entries()) {
     particle.p.y += particle.v.y
     particle.p.z += particle.v.z
   }
-  const distance = calcManhattanDistance(particle.p)
+  const distance = manhattan(particle.p)
   if (distance < minDistance) {
     minDistance = distance
     closestParticleIndex = i

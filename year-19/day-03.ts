@@ -6,23 +6,20 @@ const input = await fetchInput(import.meta)
 
 function parseWirePath(path: string) {
   return path.matchAll(/([RLUD])(\d+)/g).map(([, dir, distance]) => {
-    assert(dir === "R" || dir === "L" || dir === "U" || dir === "D")
-    return [dir, Number(distance)] as const
+    return [dir as keyof typeof MOVES, Number(distance)] as const
   })
 }
+
+const MOVES = {R: [1, 0], L: [-1, 0], U: [0, 1], D: [0, -1]} as const
 
 function traceWirePath(path: ReturnType<typeof parseWirePath>) {
   const visitedCoords = new Map<string, number>()
   let [x, y, steps] = [0, 0, 0]
   for (const [dir, distance] of path) {
+    const [dx, dy] = MOVES[dir]
     for (let i = 0; i < distance; i++, steps++) {
-      const move = {
-        R: () => x++,
-        L: () => x--,
-        U: () => y++,
-        D: () => y--,
-      }
-      move[dir]()
+      x += dx
+      y += dy
       if (!visitedCoords.has(`${x},${y}`)) {
         visitedCoords.set(`${x},${y}`, steps + 1)
       }

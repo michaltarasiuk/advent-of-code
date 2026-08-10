@@ -4,24 +4,18 @@ import {fetchInput} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
-function hasSumOf2020(...entries: number[]) {
-  return entries.reduce((acc, entry) => acc + entry, 0) === 2020
-}
-
 const expenses = input.split("\n").map(Number)
 
-let productOfTwoEntries = 1
-let productOfThreeEntries = 1
-for (const entry1 of expenses) {
-  for (const entry2 of expenses) {
-    if (hasSumOf2020(entry1, entry2)) {
-      productOfTwoEntries = entry1 * entry2
-      break
+let productOfTwoEntries = 0
+let productOfThreeEntries = 0
+for (const a of expenses) {
+  for (const b of expenses) {
+    if (a + b === 2020) {
+      productOfTwoEntries = a * b
     }
-    for (const entry3 of expenses) {
-      if (hasSumOf2020(entry1, entry2, entry3)) {
-        productOfThreeEntries = entry1 * entry2 * entry3
-        break
+    for (const c of expenses) {
+      if (a + b + c === 2020) {
+        productOfThreeEntries = a * b * c
       }
     }
   }

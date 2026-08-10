@@ -25,14 +25,13 @@ const positions = robots.map(({px, py, vx, vy}) => {
     y: y < 0 ? y + TILES_TALL : y,
   }
 })
-const {middle: _middle, ...quadrants} = Object.groupBy(positions, ({x, y}) => {
-  if (x === horizontalMiddle || y === verticalMiddle) {
-    return "middle"
-  } else {
-    return `${x < horizontalMiddle ? "left" : "right"}-${y < verticalMiddle ? "top" : "bottom"}`
-  }
+const quadrants = Object.groupBy(positions, ({x, y}) => {
+  if (x === horizontalMiddle || y === verticalMiddle) return "middle"
+  return `${x < horizontalMiddle ? "left" : "right"}-${y < verticalMiddle ? "top" : "bottom"}`
 })
 
-const safetyFactor = Object.values(quadrants).reduce((acc, quadrant) => acc * quadrant.length, 1)
+const safetyFactor = Object.entries(quadrants)
+  .filter(([k]) => k !== "middle")
+  .reduce((acc, [, q]) => acc * q.length, 1)
 
 assert.strictEqual(safetyFactor, 229839456, "Part 1 failed")

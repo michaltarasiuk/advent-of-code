@@ -4,21 +4,12 @@ import {fetchInput} from "../lib.js"
 
 const input = await fetchInput(import.meta)
 
-const questionRe = /[a-z]/g
-const questions = input
-  .split("\n\n")
-  .map(p => p.split("\n"))
-  .map(p => p.map(l => [...l.matchAll(questionRe)].map(m => m[0])))
+const groups = input.split("\n\n").map(p => p.split("\n").map(l => [...l]))
 
-const questionsCount = questions.map(group => new Set(group.flat()).size).reduce((a, b) => a + b)
+const questionsCount = groups.map(g => new Set(g.flat()).size).reduce((a, b) => a + b)
 
-const questionsCount2 = questions
-  .flatMap(group => {
-    const intersection = group.reduce((acc, questions) => [
-      ...new Set(questions).intersection(new Set(acc)),
-    ])
-    return intersection.length
-  })
+const questionsCount2 = groups
+  .map(g => g.reduce((acc, answers) => [...new Set(acc).intersection(new Set(answers))]).length)
   .reduce((a, b) => a + b)
 
 assert.strictEqual(questionsCount, 6310, "Part 1 failed")
